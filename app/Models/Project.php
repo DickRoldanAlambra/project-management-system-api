@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\CommonQueryScopes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
     /** @use HasFactory<\Database\Factories\ProjectFactory> */
-    use HasFactory;
+    use CommonQueryScopes, HasFactory;
+
     protected $fillable = [
         'title',
         'description',
@@ -16,6 +18,7 @@ class Project extends Model
         'end_date',
         'created_by',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
